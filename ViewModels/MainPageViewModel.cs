@@ -17,18 +17,36 @@ namespace DX_test_app.ViewModels
         [ObservableProperty]
         ObservableCollection<flattenedEntry> entries;
 
+        [ObservableProperty]
+        ObservableCollection<String[,]> data;
+
+        public Form form = new Form();
+
+
+  
+
         public MainPageViewModel()
         {         
             var dynamicModel = new DynamicModel();
             entries = dynamicModel.GetFlattenedCollection();
+
+            //Set Ui datagrid to the getdatagrid method result
+
+           
+
+            var data = form.RowList[0].ColumnList[0].GetFlattenedData();
         }
 
-        DataGridView setUpGrid()
+        DataGridView GetDataGrid()
         {
-            DataGridView grid = new DataGridView();
-           // grid.Columns.Add();
-
-            return new DataGridView();
+            //Set columsn by itterating through first fieldList and using fieldName as column name
+            var dataGrid = new DataGridView();
+            foreach (var item in form.RowList[0].ColumnList[0].RecordList[0].FieldList)
+            {
+                dataGrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
+            }
+           
+            return dataGrid;
         }
 
     }

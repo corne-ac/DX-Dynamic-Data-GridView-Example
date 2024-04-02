@@ -1273,3 +1273,4 @@ C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-a
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\jni_remap.x86_64.o
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\app_shared_libraries\x86_64\libxamarin-app.so
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\assets\System.Private.CoreLib.dll
+C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\DX-test-app.sourcelink.json
