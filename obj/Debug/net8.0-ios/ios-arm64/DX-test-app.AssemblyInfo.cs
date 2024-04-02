@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DX-test-app")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+4e8986b4e3c83a7cf2a6fb424dbbd7a9aa78becf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+9322e2455b0f685fb850e3fcde8718dbf9f0246d")]
 [assembly: System.Reflection.AssemblyProductAttribute("DX-test-app")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DX-test-app")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

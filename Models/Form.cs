@@ -118,12 +118,6 @@ namespace DX_test_app.Models
                         FieldId = 4,
                         FieldLabel = "Email",
                         Value = "marco@test.com"
-                    },
-                    new Field
-                    {
-                        FieldId = 4,
-                        FieldLabel = "Otherss",
-                        Value = "dfsd@tesdtsdfsf.com"
                     }
                 }
             });
@@ -156,32 +150,30 @@ namespace DX_test_app.Models
 
         public DataTable datatablesetter()
         {
-            DataTable dt = new DataTable();
+            DataTable table = new DataTable();
 
             // Add columns to the DataTable using the FieldLabel of the first field in the RecordList
             foreach (var record in RecordList)
             {
                 foreach (var field in record.FieldList)
                 {
-                    if (!dt.Columns.Contains(field.FieldLabel))
-                    {
-                        dt.Columns.Add(field.FieldLabel);
-                    }
+                    if (!table.Columns.Contains(field.FieldLabel))
+                        table.Columns.Add(field.FieldLabel);
                 }
             }
 
             // Add rows to the DataTable using the FieldLabel as the column name and the Value as the row data
             foreach (var record in RecordList)
             {
-                DataRow dr = dt.NewRow();
+                DataRow row = table.NewRow();
                 foreach (var field in record.FieldList)
                 {
-                    dr[field.FieldLabel] = field.Value;
+                    row[field.FieldLabel] = field.Value;
                 }
-                dt.Rows.Add(dr);
+                table.Rows.Add(row);
             }
 
-            return dt;
+            return table;
         }
 
     }

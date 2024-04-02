@@ -21,31 +21,34 @@ namespace DX_test_app.ViewModels
         ObservableCollection<String[,]> data;
 
         public Form form = new Form();
-
-
-  
-
+        
         public MainPageViewModel()
         {         
             var dynamicModel = new DynamicModel();
             entries = dynamicModel.GetFlattenedCollection();
-
-            //Set Ui datagrid to the getdatagrid method result
-
-           
-
-           // var data = form.RowList[0].ColumnList[0].GetFlattenedData();
+            
         }
 
-        DataGridView GetDataGrid()
+        //This doesnt seem to work, returns empty or missing values to successfully display in datagrid
+        public DataGridView GetDataGrid()
         {
             //Set columsn by itterating through first fieldList and using fieldName as column name
             var dataGrid = new DataGridView();
-            foreach (var item in form.RowList[0].ColumnList[0].RecordList[0].FieldList)
+            form.populate();
+
+            foreach (var recordList in form.RowList[0].ColumnList[0].RecordList)
             {
-                dataGrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
+                foreach (var item in recordList.FieldList)
+                {
+                    if (dataGrid.Columns.FirstOrDefault(c => c.FieldName == item.FieldLabel) == null)
+                    {
+                        dataGrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
+                    }
+                }
             }
-           
+
+            dataGrid.ItemsSource = form.RowList[0].ColumnList[0].datatablesetter();
+
             return dataGrid;
         }
 
