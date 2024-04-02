@@ -17,7 +17,7 @@
     <Grid RowDefinitions="100, auto, 100" ColumnDefinitions="auto">
         <Label BackgroundColor="CadetBlue" Text="Form Data" FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
 
-        <dxg:DataGridView ItemsSource="{Binding Entries}" EditorShowMode="DoubleTap" AllowDragDropRows="True" Grid.Row="1" Grid.Column="0" BorderThickness="5" VerticalLineThickness="3">
+        <dxg:DataGridView x:Name="datagrid"  ItemsSource="{Binding Entries}" EditorShowMode="DoubleTap" AllowDragDropRows="True" Grid.Row="1" Grid.Column="0" BorderThickness="5" VerticalLineThickness="3">
             <dxg:DataGridView.Columns>
 
                 <dxg:TextColumn FieldName="Group" MinWidth="150" Caption="Column" IsGrouped="true" FontSize="25" HeaderFontSize="25" AffixFontSize="25"/>

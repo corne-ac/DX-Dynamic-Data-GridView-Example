@@ -23,5 +23,13 @@ namespace DX_test_app.ViewModels
             entries = dynamicModel.GetFlattenedCollection();
         }
 
+        DataGridView setUpGrid()
+        {
+            DataGridView grid = new DataGridView();
+           // grid.Columns.Add();
+
+            return new DataGridView();
+        }
+
     }
 }

@@ -13,10 +13,5 @@ namespace DX_test_app
             InitializeComponent();
             BindingContext = vm;
         }
-
-        async void OnOpenWebButtonClicked(System.Object sender, System.EventArgs e)
-        {
-            await Browser.OpenAsync("https://www.devexpress.com/maui/");
-        }
     }
 }
