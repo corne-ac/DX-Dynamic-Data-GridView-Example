@@ -21,13 +21,20 @@ namespace DX_test_app
 
         void setup()
         {
-            foreach (var item in form.RowList[0].ColumnList[0].RecordList[0].FieldList)
+            form.populate();
+
+            foreach (var recordList in form.RowList[0].ColumnList[0].RecordList)
             {
-                datagrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
+                foreach (var item in recordList.FieldList)
+                {
+                    if (datagrid.Columns.FirstOrDefault(c => c.FieldName == item.FieldLabel) == null)
+                    {
+                        datagrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
+                    }
+                }
             }
-            //form.populate();
-            datagrid.ItemsSource = form.RowList[0].ColumnList[0].datatablesetter();
             
+            datagrid.ItemsSource = form.RowList[0].ColumnList[0].datatablesetter();
         }
     }
 }

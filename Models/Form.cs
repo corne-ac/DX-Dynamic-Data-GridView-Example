@@ -10,144 +10,164 @@ namespace DX_test_app.Models
 {
     public class Form
     {
+        //Attributes
+        public List<Row> RowList { get; set; }
+
         public Form()
         {
             this.RowList = new();
             this.RowList.Add(new Row());
         }
 
-        public List<Row> RowList { get; set; }
-
         //Method to populate with sample data
         public void populate()
         {
-            this.RowList[0].ColumnList[0].RecordList[0].FieldList = new()
-            {
-                new Field
-                {
-                    FieldId = 1,
-                    FieldLabel = "Name",
-                    Value = "Piet"
-                },
-                new Field
-                {
-                    FieldId = 2,
-                    FieldLabel = "Surname",
-                    Value = "Smirre"
-                },
-                new Field
-                {
-                    FieldId = 3,
-                    FieldLabel = "Age",
-                    Value = 7
-                },
-                new Field
-                {
-                    FieldId = 4,
-                    FieldLabel = "Email",
-                    Value = "piet@test.com"
-                }
-            };
 
-            this.RowList[0].ColumnList[0].RecordList[1].FieldList = new()
+            this.RowList[0].ColumnList[0].RecordList.Add(new Record()
             {
-                new Field
+                FieldList = new List<Field>
                 {
-                    FieldId = 1,
-                    FieldLabel = "Name",
-                    Value = "Corne"
-                },
-                new Field
-                {
-                    FieldId = 2,
-                    FieldLabel = "Surname",
-                    Value = "Ackerman"
-                },
-                new Field
-                {
-                    FieldId = 3,
-                    FieldLabel = "Age",
-                    Value = 23
-                },
-                new Field
-                {
-                    FieldId = 4,
-                    FieldLabel = "Email",
-                    Value = "corne@test.com"
+                        new Field
+                    {
+                        FieldId = 1,
+                        FieldLabel = "Name",
+                        Value = "Corne"
+                    },
+                    new Field
+                    {
+                        FieldId = 2,
+                        FieldLabel = "Surname",
+                        Value = "Ackerman"
+                    },
+                    new Field
+                    {
+                        FieldId = 3,
+                        FieldLabel = "Age",
+                        Value = 23
+                    },
+                    new Field
+                    {
+                        FieldId = 4,
+                        FieldLabel = "Email",
+                        Value = "corne@test.com"
+                    }
                 }
-            };
+            });
 
-            this.RowList[0].ColumnList[0].RecordList[1].FieldList = new()
+            this.RowList[0].ColumnList[0].RecordList.Add(new Record()
             {
-                new Field
+                FieldList = new List<Field>
                 {
-                    FieldId = 1,
-                    FieldLabel = "Name",
-                    Value = "marco"
-                },
-                new Field
-                {
-                    FieldId = 2,
-                    FieldLabel = "Surname",
-                    Value = "mclaren"
-                },
-                new Field
-                {
-                    FieldId = 3,
-                    FieldLabel = "Age",
-                    Value = 25
-                },
-                new Field
-                {
-                    FieldId = 4,
-                    FieldLabel = "Email",
-                    Value = "marco@test.com"
+                    new Field
+                    {
+                        FieldId = 1,
+                        FieldLabel = "Name",
+                        Value = "Piet"
+                    },
+                    new Field
+                    {
+                        FieldId = 2,
+                        FieldLabel = "Surname",
+                        Value = "Smirre"
+                    },
+                    new Field
+                    {
+                        FieldId = 3,
+                        FieldLabel = "Age",
+                        Value = 7
+                    },
+                    new Field
+                    {
+                        FieldId = 4,
+                        FieldLabel = "Email",
+                        Value = "piet@test.com"
+                    },
+                    new Field
+                    {
+                        FieldId = 5,
+                        FieldLabel = "Password",
+                        Value = "piet@test.com"
+                    }
                 }
-            };
+            });
+
+            this.RowList[0].ColumnList[0].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field
+                    {
+                        FieldId = 1,
+                        FieldLabel = "Name",
+                        Value = "marco"
+                    },
+                    new Field
+                    {
+                        FieldId = 2,
+                        FieldLabel = "Surname",
+                        Value = "mclaren"
+                    },
+                    new Field
+                    {
+                        FieldId = 3,
+                        FieldLabel = "Age",
+                        Value = 72
+                    },
+                    new Field
+                    {
+                        FieldId = 4,
+                        FieldLabel = "Email",
+                        Value = "marco@test.com"
+                    },
+                    new Field
+                    {
+                        FieldId = 4,
+                        FieldLabel = "Otherss",
+                        Value = "dfsd@tesdtsdfsf.com"
+                    }
+                }
+            });
         }
     }
 
     public class Row
     {
+        //Attributes
+        public List<Column> ColumnList { get; set; }
+
         public Row()
         {
             this.ColumnList = new();
             this.ColumnList.Add(new Column());
         }
-
-        public List<Column> ColumnList { get; set; }
     }
 
     public class Column
     {
-        public Column()
-        {
-            this.RecordList = new();
-            this.RecordList.Add(new Record());
-            this.RecordList.Add(new Record());
-            this.RecordList.Add(new Record());
-            this.RecordList.Add(new Record());
-            this.RecordList.Add(new Record());
-            this.RecordList.Add(new Record());
-        }
-
+        //Attributes
         public long ColumnId { get; set; }
         public string ColumnName { get; set; }
         public List<Record> RecordList { get; set; }
 
-        /// <summary>
-        /// Converts the fields in the RecordList to a DataTable.
-        /// Each field's FieldLabel is used as a column name, and the field's Value is used as the row data.
-        /// </summary>
-        /// <returns>The converted DataTable.</returns>
+        public Column()
+        {
+            this.RecordList = new();
+        }
+
         public DataTable datatablesetter()
         {
             DataTable dt = new DataTable();
 
             // Add columns to the DataTable using the FieldLabel of the first field in the RecordList
-            foreach (var item in RecordList[0].FieldList)
+            foreach (var record in RecordList)
             {
-                dt.Columns.Add(item.FieldLabel);
+                foreach (var field in record.FieldList)
+                {
+                    if (!dt.Columns.Contains(field.FieldLabel))
+                    {
+                        dt.Columns.Add(field.FieldLabel);
+                    }
+                }
             }
 
             // Add rows to the DataTable using the FieldLabel as the column name and the Value as the row data
@@ -168,6 +188,9 @@ namespace DX_test_app.Models
 
     public class Record 
     {
+        //Attributes
+        public List<Field> FieldList { get; set; }
+
         public Record()
         {
             this.FieldList = new()
@@ -200,7 +223,7 @@ namespace DX_test_app.Models
             };
         }
 
-        public List<Field> FieldList { get; set; }
+       
     }
 
     public class Field
