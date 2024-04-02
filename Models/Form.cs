@@ -17,6 +17,94 @@ namespace DX_test_app.Models
         }
 
         public List<Row> RowList { get; set; }
+
+        //Method to populate with sample data
+        public void populate()
+        {
+            this.RowList[0].ColumnList[0].RecordList[0].FieldList = new()
+            {
+                new Field
+                {
+                    FieldId = 1,
+                    FieldLabel = "Name",
+                    Value = "Piet"
+                },
+                new Field
+                {
+                    FieldId = 2,
+                    FieldLabel = "Surname",
+                    Value = "Smirre"
+                },
+                new Field
+                {
+                    FieldId = 3,
+                    FieldLabel = "Age",
+                    Value = 7
+                },
+                new Field
+                {
+                    FieldId = 4,
+                    FieldLabel = "Email",
+                    Value = "piet@test.com"
+                }
+            };
+
+            this.RowList[0].ColumnList[0].RecordList[1].FieldList = new()
+            {
+                new Field
+                {
+                    FieldId = 1,
+                    FieldLabel = "Name",
+                    Value = "Corne"
+                },
+                new Field
+                {
+                    FieldId = 2,
+                    FieldLabel = "Surname",
+                    Value = "Ackerman"
+                },
+                new Field
+                {
+                    FieldId = 3,
+                    FieldLabel = "Age",
+                    Value = 23
+                },
+                new Field
+                {
+                    FieldId = 4,
+                    FieldLabel = "Email",
+                    Value = "corne@test.com"
+                }
+            };
+
+            this.RowList[0].ColumnList[0].RecordList[1].FieldList = new()
+            {
+                new Field
+                {
+                    FieldId = 1,
+                    FieldLabel = "Name",
+                    Value = "marco"
+                },
+                new Field
+                {
+                    FieldId = 2,
+                    FieldLabel = "Surname",
+                    Value = "mclaren"
+                },
+                new Field
+                {
+                    FieldId = 3,
+                    FieldLabel = "Age",
+                    Value = 25
+                },
+                new Field
+                {
+                    FieldId = 4,
+                    FieldLabel = "Email",
+                    Value = "marco@test.com"
+                }
+            };
+        }
     }
 
     public class Row
@@ -47,14 +135,22 @@ namespace DX_test_app.Models
         public string ColumnName { get; set; }
         public List<Record> RecordList { get; set; }
 
-        //Method to convert the fields to a datatable, where the field.fieldlabel is a column name, and the field.value is the row data
+        /// <summary>
+        /// Converts the fields in the RecordList to a DataTable.
+        /// Each field's FieldLabel is used as a column name, and the field's Value is used as the row data.
+        /// </summary>
+        /// <returns>The converted DataTable.</returns>
         public DataTable datatablesetter()
         {
             DataTable dt = new DataTable();
+
+            // Add columns to the DataTable using the FieldLabel of the first field in the RecordList
             foreach (var item in RecordList[0].FieldList)
             {
                 dt.Columns.Add(item.FieldLabel);
             }
+
+            // Add rows to the DataTable using the FieldLabel as the column name and the Value as the row data
             foreach (var record in RecordList)
             {
                 DataRow dr = dt.NewRow();
@@ -64,21 +160,8 @@ namespace DX_test_app.Models
                 }
                 dt.Rows.Add(dr);
             }
-            return dt;
-        }
 
-        //Method that returns an ObservableCollection<string[,]> that can be set on my UI, the method will also set the columns based on the fields inside the fieldlist, each field.fieldlabel is a column name, and the field.value is the row
-        public string[,] GetFlattenedData()
-        {
-            var flattenedData = new string[RecordList.Count, RecordList[0].FieldList.Count];
-            for (int i = 0; i < RecordList.Count; i++)
-            {
-                for (int j = 0; j < RecordList[i].FieldList.Count; j++)
-                {
-                    flattenedData[i, j] = RecordList[i].FieldList[j].Value.ToString();
-                }
-            }
-            return flattenedData;
+            return dt;
         }
 
     }
@@ -107,17 +190,10 @@ namespace DX_test_app.Models
                     FieldLabel = "Age",
                     Value = 7
                 },
-
                 new Field
                 {
                     FieldId = 4,
                     FieldLabel = "Email",
-                    Value = "piet@test.com"
-                },
-                new Field
-                {
-                    FieldId = 4,
-                    FieldLabel = "df",
                     Value = "piet@test.com"
                 },
 
@@ -134,6 +210,7 @@ namespace DX_test_app.Models
         public object Value { get; set; }
     }
 
+   
 
         
 }

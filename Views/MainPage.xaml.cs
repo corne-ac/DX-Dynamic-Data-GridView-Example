@@ -25,7 +25,7 @@ namespace DX_test_app
             {
                 datagrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
             }
-
+            //form.populate();
             datagrid.ItemsSource = form.RowList[0].ColumnList[0].datatablesetter();
             
         }

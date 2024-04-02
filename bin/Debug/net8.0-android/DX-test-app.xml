@@ -4,6 +4,13 @@
         <name>DX-test-app</name>
     </assembly>
     <members>
+        <member name="M:DX_test_app.Models.Column.datatablesetter">
+            <summary>
+            Converts the fields in the RecordList to a DataTable.
+            Each field's FieldLabel is used as a column name, and the field's Value is used as the row data.
+            </summary>
+            <returns>The converted DataTable.</returns>
+        </member>
         <member name="T:DX_test_app.ViewModels.MainPageViewModel">
             <inheritdoc/>
         </member>

@@ -34,7 +34,7 @@ namespace DX_test_app.ViewModels
 
            
 
-            var data = form.RowList[0].ColumnList[0].GetFlattenedData();
+           // var data = form.RowList[0].ColumnList[0].GetFlattenedData();
         }
 
         DataGridView GetDataGrid()
