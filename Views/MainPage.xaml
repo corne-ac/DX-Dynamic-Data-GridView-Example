@@ -1,0 +1,105 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dx="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             xmlns:dxco="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Charts;assembly=DevExpress.Maui.Charts"
+             xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+             xmlns:dxsch="clr-namespace:DevExpress.Maui.Scheduler;assembly=DevExpress.Maui.Scheduler"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxdf="clr-namespace:DevExpress.Maui.DataForm;assembly=DevExpress.Maui.Editors"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="true"
+             x:Class="DX_test_app.MainPage"
+             xmlns:viewmodel="clr-namespace:DX_test_app.ViewModels"
+             x:DataType="viewmodel:MainPageViewModel">
+
+    <Grid RowDefinitions="100, auto, 100" ColumnDefinitions="auto">
+        <Label BackgroundColor="CadetBlue" Text="Form Data" FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+
+        <dxg:DataGridView ItemsSource="{Binding Entries}" EditorShowMode="DoubleTap" AllowDragDropRows="True" Grid.Row="1" Grid.Column="0" BorderThickness="5" VerticalLineThickness="3">
+            <dxg:DataGridView.Columns>
+
+                <dxg:TextColumn FieldName="Group" MinWidth="150" Caption="Column" IsGrouped="true" FontSize="25" HeaderFontSize="25" AffixFontSize="25"/>
+                <dxg:TextColumn FieldName="Field" MinWidth="50" MaxWidth="100" HorizontalContentAlignment="Center" HeaderFontSize="25"/>
+                <dxg:TextColumn FieldName="Data" MinWidth="100" HorizontalContentAlignment="Center" HeaderFontSize="25"/>
+
+            </dxg:DataGridView.Columns>
+
+            <!--<dxg:DataGridView.AdvancedColumnLayout>
+
+                <dxg:AdvancedColumnLayout>
+                    <dxg:AdvancedColumnLayout.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </dxg:AdvancedColumnLayout.ColumnDefinitions>
+                    <dxg:AdvancedColumnLayout.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </dxg:AdvancedColumnLayout.RowDefinitions>
+                </dxg:AdvancedColumnLayout>
+
+            </dxg:DataGridView.AdvancedColumnLayout>
+
+            <dxg:DataGridView.Columns>
+
+                <dxg:TextColumn FieldName="Group" MinWidth="150" Caption="Column" Row="0" Column="0" ColumnSpan="3"/>
+                <dxg:TextColumn FieldName="Field" MinWidth="50" MaxWidth="100" HorizontalContentAlignment="Center" HeaderFontSize="25" Row="1" Column="0"/>
+                <dxg:TextColumn FieldName="data" MinWidth="100" HorizontalContentAlignment="Center" HeaderFontSize="25" Row="1" Column="1" ColumnSpan="2"/>
+
+            </dxg:DataGridView.Columns>-->
+
+            <dxg:DataGridView.GroupSummaries>
+                <dxg:GridColumnSummary FieldName="Group" Type="Count" DisplayFormat="Fields: 0"/>
+            </dxg:DataGridView.GroupSummaries>
+
+        </dxg:DataGridView>
+
+    </Grid>
+    
+</ContentPage>
+
+
+
+
+
+
+
+<!--<dxg:DataGridView.AdvancedColumnLayout>
+    <dxg:AdvancedColumnLayout>
+        <dxg:AdvancedColumnLayout.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="9*"/>
+        </dxg:AdvancedColumnLayout.ColumnDefinitions>
+        <dxg:AdvancedColumnLayout.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </dxg:AdvancedColumnLayout.RowDefinitions>
+    </dxg:AdvancedColumnLayout>
+</dxg:DataGridView.AdvancedColumnLayout>
+
+<dxg:DataGridView.Columns>
+
+    <dxg:TemplateColumn FieldName="Name" Caption="Id" MinWidth="50" RowSpan="3">
+        <dxg:TemplateColumn.DisplayTemplate>
+            <DataTemplate>
+                <Grid VerticalOptions="Center" HorizontalOptions="Center" RowDefinitions="auto, auto, auto">
+                    <Label Text="{Binding Item.Id}" Grid.Row="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    --><!--<Label Text="{Binding Item.Name}" Grid.Row="1"/>--><!--
+                </Grid>
+            </DataTemplate>
+        </dxg:TemplateColumn.DisplayTemplate>
+    </dxg:TemplateColumn>
+
+
+    <dxg:TextColumn FieldName="Name" MinWidth="100" VerticalContentAlignment="Center" Row="1" Column="1" ColumnSpan="2"/>
+    <dxg:TextColumn FieldName="Description" MinWidth="200" VerticalContentAlignment="Center" Row="1" Column="3" ColumnSpan="2"/>
+    <dxg:TextColumn Caption="Group" Row="0" Column="1" ColumnSpan="4" FontSize="0"/>
+    --><!--This one should only be a header--><!--
+
+</dxg:DataGridView.Columns>
+</dxg:DataGridView>-->
