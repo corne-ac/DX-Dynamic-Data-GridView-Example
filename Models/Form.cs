@@ -148,6 +148,7 @@ namespace DX_test_app.Models
             this.RecordList = new();
         }
 
+        //converts all records inside this column to a DataTable to set as Source for the DataGrid
         public DataTable datatablesetter()
         {
             DataTable table = new DataTable();
@@ -158,7 +159,7 @@ namespace DX_test_app.Models
                 foreach (var field in record.FieldList)
                 {
                     if (!table.Columns.Contains(field.FieldLabel))
-                        table.Columns.Add(field.FieldLabel);
+                        table.Columns.Add(field.FieldLabel, field.Value.GetType());
                 }
             }
 

@@ -4,38 +4,5 @@
         <name>DX-test-app</name>
     </assembly>
     <members>
-        <member name="T:DX_test_app.ViewModels.MainPageViewModel">
-            <inheritdoc/>
-        </member>
-        <member name="P:DX_test_app.ViewModels.MainPageViewModel.Entries">
-            <inheritdoc cref="F:DX_test_app.ViewModels.MainPageViewModel.entries"/>
-        </member>
-        <member name="P:DX_test_app.ViewModels.MainPageViewModel.Data">
-            <inheritdoc cref="F:DX_test_app.ViewModels.MainPageViewModel.data"/>
-        </member>
-        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
-            <summary>
-            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
-            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
-            </summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Entries">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Entries" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Data">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Data" generated properties.</summary>
-        </member>
-        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
-            <summary>
-            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
-            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
-            </summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Entries">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Entries" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Data">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Data" generated properties.</summary>
-        </member>
     </members>
 </doc>

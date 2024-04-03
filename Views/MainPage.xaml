@@ -14,19 +14,14 @@
              xmlns:viewmodel="clr-namespace:DX_test_app.ViewModels"
              x:DataType="viewmodel:MainPageViewModel">
 
-    <Grid RowDefinitions="100, auto, 100" ColumnDefinitions="auto">
+
+
+    <StackLayout x:Name="stack" Orientation="Vertical">
         <Label BackgroundColor="CadetBlue" Text="Form Data" FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
 
-
-        <dxg:DataGridView x:Name="datagrid" AutoGenerateColumnsMode="Auto" ItemsSource="{Binding Data}" EditorShowMode="DoubleTap" AllowDragDropRows="True" Grid.Row="1" Grid.Column="0" BorderThickness="5" VerticalLineThickness="3">
-
-
-            <dxg:DataGridView.GroupSummaries>
-                <dxg:GridColumnSummary FieldName="Group" Type="Count" DisplayFormat="Fields: 0"/>
-            </dxg:DataGridView.GroupSummaries>
+        <dxg:DataGridView x:Name="datagrid" AutoGenerateColumnsMode="Auto" EditorShowMode="DoubleTap" AllowDragDropRows="True" Grid.Row="1" Grid.Column="0" BorderThickness="5" VerticalLineThickness="3">
 
         </dxg:DataGridView>
-
-    </Grid>
+    </StackLayout>
 
 </ContentPage>

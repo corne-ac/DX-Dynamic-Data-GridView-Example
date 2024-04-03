@@ -14,42 +14,92 @@ namespace DX_test_app.ViewModels
     public partial class MainPageViewModel : ObservableObject
     {
 
-        [ObservableProperty]
-        ObservableCollection<flattenedEntry> entries;
-
-        [ObservableProperty]
-        ObservableCollection<String[,]> data;
-
-        public Form form = new Form();
+        [ObservableProperty] public Form form = new Form();
+        [ObservableProperty] public List<DataGridView> lstDatagrid = new List<DataGridView>();
         
         public MainPageViewModel()
         {         
-            var dynamicModel = new DynamicModel();
-            entries = dynamicModel.GetFlattenedCollection();
-            
+            form.populate();
         }
 
         //This doesnt seem to work, returns empty or missing values to successfully display in datagrid
-        public DataGridView GetDataGrid()
+        public DataGridView GetDataGrid(DataGridView datagrid)
         {
-            //Set columsn by itterating through first fieldList and using fieldName as column name
-            var dataGrid = new DataGridView();
-            form.populate();
-
-            foreach (var recordList in form.RowList[0].ColumnList[0].RecordList)
+            
+            //Set up columns, itterate through fieldLists and use fieldName as column name
+            //Goes through all records to ensure all columns are added
+            //This part helps if wanting to customise each column
+            foreach (var recordList in Form.RowList[0].ColumnList[0].RecordList)
             {
-                foreach (var item in recordList.FieldList)
+                foreach (var field in recordList.FieldList)
                 {
-                    if (dataGrid.Columns.FirstOrDefault(c => c.FieldName == item.FieldLabel) == null)
+                    if (datagrid.Columns.FirstOrDefault(c => c.FieldName == field.FieldLabel) == null)
                     {
-                        dataGrid.Columns.Add(new TextColumn() { FieldName = item.FieldLabel, Caption = item.FieldLabel });
+                        //Calculate width of column based on length of data and ColumnName
+                        int width = field.Value.ToString().Length * 13;
+                        int titleWidth = field.FieldLabel.ToString().Length * 13;
+                        width = width < 100 ? 100 : width;
+                        width = titleWidth > width ? titleWidth : width;
+
+                        //Check data type and set column type accordingly
+                        if (field.Value.GetType() == typeof(int))
+                            datagrid.Columns.Add(new NumberColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                        else if (field.Value.GetType() == typeof(DateTime))
+                            datagrid.Columns.Add(new DateColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                        else if (field.Value.GetType() == typeof(bool))
+                            datagrid.Columns.Add(new CheckBoxColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                        else
+                            datagrid.Columns.Add(new TextColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
                     }
                 }
+
+
             }
 
-            dataGrid.ItemsSource = form.RowList[0].ColumnList[0].datatablesetter();
+            //Set Data
+            datagrid.ItemsSource = Form.RowList[0].ColumnList[0].datatablesetter();
+             //Maybe have an observable lsit of the datagrids inside the VM, that is then used on the View side to loop through and add each grid to the UI
+            return datagrid;
+        }
 
-            return dataGrid;
+        //WIP
+        public DataGridView GetDataGridDynamic()
+        {
+            DataGridView dataGrid = new DataGridView();
+            //Set up columns, itterate through fieldLists and use fieldName as column name
+            //Goes through all records to ensure all columns are added
+            //This part helps if wanting to customise each column
+            foreach (var recordList in Form.RowList[0].ColumnList[0].RecordList)
+            {
+                foreach (var field in recordList.FieldList)
+                {
+                    if (datagrid.Columns.FirstOrDefault(c => c.FieldName == field.FieldLabel) == null)
+                    {
+                        //Calculate width of column based on length of data and ColumnName
+                        int width = field.Value.ToString().Length * 13;
+                        int titleWidth = field.FieldLabel.ToString().Length * 13;
+                        width = width < 100 ? 100 : width;
+                        width = titleWidth > width ? titleWidth : width;
+
+                        //Check data type and set column type accordingly
+                        if (field.Value.GetType() == typeof(int))
+                            datagrid.Columns.Add(new NumberColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                        else if (field.Value.GetType() == typeof(DateTime))
+                            datagrid.Columns.Add(new DateColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                        else if (field.Value.GetType() == typeof(bool))
+                            datagrid.Columns.Add(new CheckBoxColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                        else
+                            datagrid.Columns.Add(new TextColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
+                    }
+                }
+
+
+            }
+
+            //Set Data
+            datagrid.ItemsSource = Form.RowList[0].ColumnList[0].datatablesetter();
+            //Maybe have an observable lsit of the datagrids inside the VM, that is then used on the View side to loop through and add each grid to the UI
+            return datagrid;
         }
 
     }
