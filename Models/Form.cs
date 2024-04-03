@@ -22,35 +22,14 @@ namespace DX_test_app.Models
         //Method to populate with sample data
         public void populate()
         {
-
             this.RowList[0].ColumnList[0].RecordList.Add(new Record()
             {
                 FieldList = new List<Field>
                 {
-                        new Field
-                    {
-                        FieldId = 1,
-                        FieldLabel = "Name",
-                        Value = "Corne"
-                    },
-                    new Field
-                    {
-                        FieldId = 2,
-                        FieldLabel = "Surname",
-                        Value = "Ackerman"
-                    },
-                    new Field
-                    {
-                        FieldId = 3,
-                        FieldLabel = "Age",
-                        Value = 23
-                    },
-                    new Field
-                    {
-                        FieldId = 4,
-                        FieldLabel = "Email",
-                        Value = "corne@test.com"
-                    }
+                    new Field { FieldId = 1, FieldLabel = "Name", Value = "Corne" },
+                    new Field { FieldId = 2, FieldLabel = "Surname", Value = "Ackerman" },
+                    new Field { FieldId = 3, FieldLabel = "Age", Value = 23 },
+                    new Field { FieldId = 4, FieldLabel = "Email", Value = "corne@test.com" }
                 }
             });
 
@@ -58,36 +37,11 @@ namespace DX_test_app.Models
             {
                 FieldList = new List<Field>
                 {
-                    new Field
-                    {
-                        FieldId = 1,
-                        FieldLabel = "Name",
-                        Value = "Piet"
-                    },
-                    new Field
-                    {
-                        FieldId = 2,
-                        FieldLabel = "Surname",
-                        Value = "Smirre"
-                    },
-                    new Field
-                    {
-                        FieldId = 3,
-                        FieldLabel = "Age",
-                        Value = 7
-                    },
-                    new Field
-                    {
-                        FieldId = 4,
-                        FieldLabel = "Email",
-                        Value = "piet@test.com"
-                    },
-                    new Field
-                    {
-                        FieldId = 5,
-                        FieldLabel = "Password",
-                        Value = "piet@test.com"
-                    }
+                    new Field { FieldId = 1, FieldLabel = "Name", Value = "Piet" },
+                    new Field { FieldId = 2, FieldLabel = "Surname", Value = "Smirre" },
+                    new Field { FieldId = 3, FieldLabel = "Age", Value = 7 },
+                    new Field { FieldId = 4, FieldLabel = "Email", Value = "piet@test.com" },
+                    new Field { FieldId = 5, FieldLabel = "Password", Value = "piet@test.com" }
                 }
             });
 
@@ -95,30 +49,44 @@ namespace DX_test_app.Models
             {
                 FieldList = new List<Field>
                 {
-                    new Field
-                    {
-                        FieldId = 1,
-                        FieldLabel = "Name",
-                        Value = "marco"
-                    },
-                    new Field
-                    {
-                        FieldId = 2,
-                        FieldLabel = "Surname",
-                        Value = "mclaren"
-                    },
-                    new Field
-                    {
-                        FieldId = 3,
-                        FieldLabel = "Age",
-                        Value = 72
-                    },
-                    new Field
-                    {
-                        FieldId = 4,
-                        FieldLabel = "Email",
-                        Value = "marco@test.com"
-                    }
+                    new Field { FieldId = 1, FieldLabel = "Name", Value = "marco" },
+                    new Field { FieldId = 2, FieldLabel = "Surname", Value = "mclaren" },
+                    new Field { FieldId = 3, FieldLabel = "Age", Value = 72 },
+                    new Field { FieldId = 4, FieldLabel = "Email", Value = "marco@test.com" }
+                }
+            });
+
+            //second column
+            this.RowList[0].ColumnList[1].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "Product", Value = "MSI Raider" },
+                    new Field { FieldId = 2, FieldLabel = "Product Category", Value = "Laptop" },
+                    new Field { FieldId = 3, FieldLabel = "Price", Value = 20999.80 },
+                    new Field { FieldId = 4, FieldLabel = "Seller", Value = "MSI" }
+                }
+            });
+
+            this.RowList[0].ColumnList[1].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "Product", Value = "Samsung S22" },
+                    new Field { FieldId = 2, FieldLabel = "Product Category", Value = "Smartphone" },
+                    new Field { FieldId = 3, FieldLabel = "Price", Value = 5699.50 },
+                    new Field { FieldId = 4, FieldLabel = "Seller", Value = "Samsung" }
+                }
+            });
+
+            this.RowList[0].ColumnList[1].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "Product", Value = "Acer G23789E" },
+                    new Field { FieldId = 2, FieldLabel = "Product Category", Value = "Display" },
+                    new Field { FieldId = 3, FieldLabel = "Price", Value = 5999.00 },
+                    new Field { FieldId = 4, FieldLabel = "Seller", Value = "Lenovo" }
                 }
             });
         }
@@ -132,6 +100,7 @@ namespace DX_test_app.Models
         public Row()
         {
             this.ColumnList = new();
+            this.ColumnList.Add(new Column());
             this.ColumnList.Add(new Column());
         }
     }
@@ -147,36 +116,6 @@ namespace DX_test_app.Models
         {
             this.RecordList = new();
         }
-
-        //converts all records inside this column to a DataTable to set as Source for the DataGrid
-        public DataTable datatablesetter()
-        {
-            DataTable table = new DataTable();
-
-            // Add columns to the DataTable using the FieldLabel of the first field in the RecordList
-            foreach (var record in RecordList)
-            {
-                foreach (var field in record.FieldList)
-                {
-                    if (!table.Columns.Contains(field.FieldLabel))
-                        table.Columns.Add(field.FieldLabel, field.Value.GetType());
-                }
-            }
-
-            // Add rows to the DataTable using the FieldLabel as the column name and the Value as the row data
-            foreach (var record in RecordList)
-            {
-                DataRow row = table.NewRow();
-                foreach (var field in record.FieldList)
-                {
-                    row[field.FieldLabel] = field.Value;
-                }
-                table.Rows.Add(row);
-            }
-
-            return table;
-        }
-
     }
 
     public class Record 
@@ -186,34 +125,7 @@ namespace DX_test_app.Models
 
         public Record()
         {
-            this.FieldList = new()
-            { 
-                new Field 
-                {
-                    FieldId = 1,
-                    FieldLabel = "Name",
-                    Value = "Piet"
-                },
-                new Field
-                {
-                    FieldId = 2,
-                    FieldLabel = "Surname",
-                    Value = "Smirre"
-                },
-                new Field
-                {
-                    FieldId = 3,
-                    FieldLabel = "Age",
-                    Value = 7
-                },
-                new Field
-                {
-                    FieldId = 4,
-                    FieldLabel = "Email",
-                    Value = "piet@test.com"
-                },
-
-            };
+            this.FieldList = new();
         }
 
        

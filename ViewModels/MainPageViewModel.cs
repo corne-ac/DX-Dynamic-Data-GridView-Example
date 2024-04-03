@@ -16,57 +16,40 @@ namespace DX_test_app.ViewModels
     {
 
         [ObservableProperty] public Form form = new Form();
-        [ObservableProperty] public DataTable table = new();
 
         public MainPageViewModel()
         {         
-            setupData();
-        }
-
-        public void setupData()
-        {
             Form.populate();
-            Table = Form.RowList[0].ColumnList[0].datatablesetter();
         }
 
-        //public DataGridView GetDataGridDynamic()
-        //{
-        //    DataGridView dataGrid = new DataGridView();
-        //    //Set up columns, itterate through fieldLists and use fieldName as column name
-        //    //Goes through all records to ensure all columns are added
-        //    //This part helps if wanting to customise each column
-        //    foreach (var recordList in Form.RowList[0].ColumnList[0].RecordList)
-        //    {
-        //        foreach (var field in recordList.FieldList)
-        //        {
-        //            if (datagrid.Columns.FirstOrDefault(c => c.FieldName == field.FieldLabel) == null)
-        //            {
-        //                //Calculate width of column based on length of data and ColumnName
-        //                int width = field.Value.ToString().Length * 13;
-        //                int titleWidth = field.FieldLabel.ToString().Length * 13;
-        //                width = width < 100 ? 100 : width;
-        //                width = titleWidth > width ? titleWidth : width;
+        //Creates a DataTable that will be used as a source for the DataGrid
+        //Takes the Column as a parameter for which it will create the DataTable
+        public DataTable getTable(Column col)
+        {
+            DataTable table = new DataTable();
 
-        //                //Check data type and set column type accordingly
-        //                if (field.Value.GetType() == typeof(int))
-        //                    datagrid.Columns.Add(new NumberColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
-        //                else if (field.Value.GetType() == typeof(DateTime))
-        //                    datagrid.Columns.Add(new DateColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
-        //                else if (field.Value.GetType() == typeof(bool))
-        //                    datagrid.Columns.Add(new CheckBoxColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
-        //                else
-        //                    datagrid.Columns.Add(new TextColumn() { FieldName = field.FieldLabel, Caption = field.FieldLabel, MinWidth = width });
-        //            }
-        //        }
+            // Add columns to the DataTable using the FieldLabel of the first field in the RecordList
+            foreach (var record in col.RecordList)
+            {
+                foreach (var field in record.FieldList)
+                {
+                    if (!table.Columns.Contains(field.FieldLabel)) //Only add if not already added
+                        table.Columns.Add(field.FieldLabel, field.Value.GetType());
+                }
+            }
 
+            // Add rows to the DataTable using the FieldLabel as the column name and the Value as the row data
+            foreach (var record in col.RecordList)
+            {
+                DataRow row = table.NewRow();
 
-        //    }
+                foreach (var field in record.FieldList)
+                    row[field.FieldLabel] = field.Value;
+                
+                table.Rows.Add(row);
+            }
 
-        //    //Set Data
-        //    datagrid.ItemsSource = Form.RowList[0].ColumnList[0].datatablesetter();
-        //    //Maybe have an observable lsit of the datagrids inside the VM, that is then used on the View side to loop through and add each grid to the UI
-        //    return datagrid;
-        //}
-
+            return table;
+        }
     }
 }
