@@ -389,3 +389,4 @@ C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-i
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-ios\ios-arm64\DX-test-app.pdb
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-ios\ios-arm64\DX-test-app.genruntimeconfig.cache
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-ios\ios-arm64\ref\DX-test-app.dll
+C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-ios\ios-arm64\DX-test-app.sourcelink.json
