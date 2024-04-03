@@ -14,15 +14,10 @@
              xmlns:viewmodel="clr-namespace:DX_test_app.ViewModels"
              x:DataType="viewmodel:MainPageViewModel">
 
-
-
     <ScrollView>
         <StackLayout x:Name="stack" Orientation="Vertical">
-            <Label BackgroundColor="CadetBlue" Text="Form Data" FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+            <Label BackgroundColor="WhiteSmoke" Text="Form Data" FontSize="30" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
 
-            <!--<dxg:DataGridView x:Name="datagrid" AutoGenerateColumnsMode="Auto" EditorShowMode="DoubleTap" AllowDragDropRows="True" Grid.Row="1" Grid.Column="0" BorderThickness="5" VerticalLineThickness="3">
-
-             </dxg:DataGridView>-->
         </StackLayout>
     </ScrollView>
     

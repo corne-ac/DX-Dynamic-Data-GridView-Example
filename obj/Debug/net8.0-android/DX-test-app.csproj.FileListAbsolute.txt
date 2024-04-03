@@ -1263,6 +1263,8 @@ C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-a
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\assets\CommunityToolkit.Mvvm.dll
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\assets\CommunityToolkit.Mvvm.pdb
+C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\assets\System.Private.CoreLib.dll
+C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\DX-test-app.sourcelink.json
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\typemaps.x86_64.ll
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\environment.x86_64.ll
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\compressed_assemblies.x86_64.ll
@@ -1272,5 +1274,3 @@ C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-a
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\marshal_methods.x86_64.o
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\jni_remap.x86_64.o
 C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\app_shared_libraries\x86_64\libxamarin-app.so
-C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\android\assets\System.Private.CoreLib.dll
-C:\Users\Corne.Ackerman2\source\repos\DX-test-app\DX-test-app\obj\Debug\net8.0-android\DX-test-app.sourcelink.json

@@ -23,7 +23,6 @@ namespace DX_test_app
         //Functions without this and only using the DataTable, but this enables the use of custom column types
         void setupGrids(MainPageViewModel vm)
         {
-            
             //Itterate through columns
             foreach (var col in vm.Form.RowList[0].ColumnList)
             {

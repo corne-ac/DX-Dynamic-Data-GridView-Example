@@ -1,0 +1,42 @@
+# Visual Studio temporary files
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+**/[Ll]ogs/
+
+# NuGet packages folder
+**/[Nn]uGet/packages/**
+
+# Build output folders
+**/[Dd]ebug/
+**/[Rr]elease/
+**/[Ww][Ii][Nn]32/
+**/[Aa][Rr][Mm]/
+**/[Aa][Rr][Mm]64/
+**/bld/
+
+# Visual Studio user settings
+*.suo
+*.user
+*.userosscache
+
+# Unit test results (consider including if not relevant)
+**/[Tt]est[Rr]esult*/
+**/[Bb]uild[Ll]og.*
+
+# Temporary VS files
+*.tmp
+*.vsdbg
+*.opendb
+*.opensdf
+*.sln.docstates
+
+# Ignore any potential local database files
+*.db
+*.sqlite
+
+# Generated code (if applicable)
+**/Generated\ Files/
+
+# Third-party libraries (if using specific libraries)
+**/node_modules/

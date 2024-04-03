@@ -136,9 +136,5 @@ namespace DX_test_app.Models
         public long FieldId { get; set; }
         public string FieldLabel { get; set; }
         public object Value { get; set; }
-    }
-
-   
-
-        
+    }   
 }
