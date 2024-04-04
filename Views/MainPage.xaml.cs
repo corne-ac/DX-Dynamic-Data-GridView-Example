@@ -52,8 +52,6 @@ namespace DX_test_app
                             int titleWidth = field.FieldLabel.ToString().Length * 13;
                             width = width < 100 ? 100 : width;
                             width = titleWidth > width ? titleWidth : width;
-                            int headerSize = 17;
-                            Microsoft.Maui.Graphics.Color headerColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255);
 
                             // Check data type and set column type accordingly
                             if (field.Value.GetType() == typeof(int))
@@ -61,30 +59,21 @@ namespace DX_test_app
                                 {
                                     FieldName = field.FieldLabel,
                                     Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    HeaderFontSize = headerSize,
-                                    HeaderBackgroundColor = headerColor,
-                                    HeaderFontAttributes = FontAttributes.Bold
+                                    MinWidth = width
                                 });
                             else if (field.Value.GetType() == typeof(DateTime))
                                 grid.Columns.Add(new DateColumn()
                                 {
                                     FieldName = field.FieldLabel,
                                     Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    HeaderFontSize = headerSize,
-                                    HeaderBackgroundColor = headerColor,
-                                    HeaderFontAttributes = FontAttributes.Bold
+                                    MinWidth = width
                                 });
                             else if (field.Value.GetType() == typeof(bool))
                                 grid.Columns.Add(new CheckBoxColumn()
                                 {
                                     FieldName = field.FieldLabel,
                                     Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    HeaderFontSize = headerSize,
-                                    HeaderBackgroundColor = headerColor,
-                                    HeaderFontAttributes = FontAttributes.Bold
+                                    MinWidth = width
                                 });
                             else if (field.Value.GetType() == typeof(decimal) || //All number types
                                      field.Value.GetType() == typeof(long) ||
@@ -96,20 +85,14 @@ namespace DX_test_app
                                 {
                                     FieldName = field.FieldLabel,
                                     Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    HeaderFontSize = headerSize,
-                                    HeaderBackgroundColor = headerColor,
-                                    HeaderFontAttributes = FontAttributes.Bold
+                                    MinWidth = width
                                 });
                             else
                                 grid.Columns.Add(new TextColumn()
                                 {
                                     FieldName = field.FieldLabel,
                                     Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    HeaderFontSize = headerSize,
-                                    HeaderBackgroundColor = headerColor,
-                                    HeaderFontAttributes = FontAttributes.Bold
+                                    MinWidth = width
                                 });
                         } // if
                     } // foreach field
@@ -123,10 +106,23 @@ namespace DX_test_app
 
         private void addGridsToView()
         {
+            //Additional Formatting
+            int headerSize = 17;
+            Microsoft.Maui.Graphics.Color headerColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255);
+
             // Iterate through gridList and add each grid to the stack layout
             foreach (var grid in gridList)
+            {
+                //Apply formatting to headers
+                grid.Columns.ForEach(c =>
+                {
+                    c.HeaderFontSize = headerSize;
+                    c.HeaderBackgroundColor = headerColor;
+                    c.HeaderFontAttributes = FontAttributes.Bold;
+                });
                 stack.Children.Add(grid);
-            
+            }
+ 
         }
 
     } // Class
