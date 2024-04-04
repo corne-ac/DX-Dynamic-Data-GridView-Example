@@ -9,6 +9,7 @@ namespace DX_test_app
     {
         // List used to store each gridview created
         public List<DataGridView> gridList = new();
+        public List<Label> labels = new();
 
         public MainPage(MainPageViewModel vm)
         {
@@ -37,6 +38,16 @@ namespace DX_test_app
                     AllowDragDropRows = true,
                 };
 
+                //Add label with column name
+                Label label = new()
+                {
+                    Text = col.ColumnName,
+                    FontSize = 20,
+                    FontAttributes = FontAttributes.Bold,
+                    Margin = new Thickness(0, 0, 0, 10)
+                };
+                labels.Add(label);
+
                 // Iterate through records and fields to add relevant column types to grid
                 // Goes through all records in case some fields are not present in all records (ex. fields added later)
                 foreach (var recordList in col.RecordList)
@@ -47,6 +58,7 @@ namespace DX_test_app
                         // Check if column hasn't been added yet
                         if (grid.Columns.FirstOrDefault(c => c.FieldName == field.FieldLabel) == null)
                         {
+                            
                             // Calculate width of column based on length of data and ColumnName
                             int width = field.Value.ToString().Length * 13;
                             int titleWidth = field.FieldLabel.ToString().Length * 13;
@@ -106,20 +118,18 @@ namespace DX_test_app
 
         private void addGridsToView()
         {
-            //Additional Formatting
-            int headerSize = 17;
-            Microsoft.Maui.Graphics.Color headerColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255);
-
+            int c = 0;
             // Iterate through gridList and add each grid to the stack layout
             foreach (var grid in gridList)
             {
-                //Apply formatting to headers
+                //Apply additional formatting to headers
                 grid.Columns.ForEach(c =>
                 {
-                    c.HeaderFontSize = headerSize;
-                    c.HeaderBackgroundColor = headerColor;
+                    c.HeaderFontSize = 17;
+                    c.HeaderBackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255);
                     c.HeaderFontAttributes = FontAttributes.Bold;
                 });
+                stack.Children.Add(labels[c++]);
                 stack.Children.Add(grid);
             }
  

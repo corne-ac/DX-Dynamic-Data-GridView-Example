@@ -40,8 +40,7 @@ namespace DX_test_app.Models
                     new Field { FieldId = 1, FieldLabel = "Name", Value = "Piet" },
                     new Field { FieldId = 2, FieldLabel = "Surname", Value = "Smirre" },
                     new Field { FieldId = 3, FieldLabel = "Age", Value = 7 },
-                    new Field { FieldId = 4, FieldLabel = "Email", Value = "piet@test.com" },
-                    new Field { FieldId = 5, FieldLabel = "Password", Value = "piet@test.com" }
+                    new Field { FieldId = 4, FieldLabel = "Email", Value = "piet@test.com" }
                 }
             });
 
@@ -52,7 +51,8 @@ namespace DX_test_app.Models
                     new Field { FieldId = 1, FieldLabel = "Name", Value = "marco" },
                     new Field { FieldId = 2, FieldLabel = "Surname", Value = "mclaren" },
                     new Field { FieldId = 3, FieldLabel = "Age", Value = 72 },
-                    new Field { FieldId = 4, FieldLabel = "Email", Value = "marco@test.com" }
+                    new Field { FieldId = 4, FieldLabel = "Email", Value = "marco@test.com" },
+                    new Field { FieldId = 5, FieldLabel = "Password", Value = "piet@test.com" }
                 }
             });
 
@@ -145,9 +145,9 @@ namespace DX_test_app.Models
         public Row()
         {
             this.ColumnList = new();
-            this.ColumnList.Add(new Column());
-            this.ColumnList.Add(new Column());
-            this.ColumnList.Add(new Column());
+            this.ColumnList.Add(new Column() { ColumnName = "Personal Details" });
+            this.ColumnList.Add(new Column() { ColumnName = "Products" });
+            this.ColumnList.Add(new Column() { ColumnName = "Employees" });
         }
     }
 
