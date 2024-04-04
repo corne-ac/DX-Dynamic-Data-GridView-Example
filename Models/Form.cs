@@ -89,6 +89,51 @@ namespace DX_test_app.Models
                     new Field { FieldId = 4, FieldLabel = "Seller", Value = "Lenovo" }
                 }
             });
+
+            //Third column
+            this.RowList[0].ColumnList[2].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "IsActive", Value = true },
+                    new Field { FieldId = 2, FieldLabel = "Emp Number", Value = "E1234" },
+                    new Field { FieldId = 3, FieldLabel = "Role", Value = "Dev" },
+                    new Field { FieldId = 4, FieldLabel = "Type", Value = "Full-Time" }
+                }
+            });
+
+            this.RowList[0].ColumnList[2].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "IsActive", Value = false },
+                    new Field { FieldId = 2, FieldLabel = "Emp Number", Value = "E1235" },
+                    new Field { FieldId = 3, FieldLabel = "Role", Value = "Consultant" },
+                    new Field { FieldId = 4, FieldLabel = "Type", Value = "Part-Time" }
+                }
+            });
+
+            this.RowList[0].ColumnList[2].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "IsActive", Value = true },
+                    new Field { FieldId = 2, FieldLabel = "Emp Number", Value = "E1236" },
+                    new Field { FieldId = 3, FieldLabel = "Role", Value = "HR" },
+                    new Field { FieldId = 4, FieldLabel = "Type", Value = "Full-Time" }
+                }
+            });
+
+            this.RowList[0].ColumnList[2].RecordList.Add(new Record()
+            {
+                FieldList = new List<Field>
+                {
+                    new Field { FieldId = 1, FieldLabel = "IsActive", Value = true },
+                    new Field { FieldId = 2, FieldLabel = "Emp Number", Value = "E1237" },
+                    new Field { FieldId = 3, FieldLabel = "Role", Value = "CEO" },
+                    new Field { FieldId = 4, FieldLabel = "Type", Value = "Full-Time" }
+                }
+            });
         }
     }
 
@@ -100,6 +145,7 @@ namespace DX_test_app.Models
         public Row()
         {
             this.ColumnList = new();
+            this.ColumnList.Add(new Column());
             this.ColumnList.Add(new Column());
             this.ColumnList.Add(new Column());
         }
