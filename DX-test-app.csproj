@@ -57,4 +57,5 @@
 	<ItemGroup>
 	  <Folder Include="NewFolder\" />
 	</ItemGroup>
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionDXtestappHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>

@@ -16,10 +16,23 @@ namespace DX_test_app.ViewModels
     {
 
         [ObservableProperty] public Form form = new Form();
+        [ObservableProperty] public List<DataGridView> gridList = new();
 
         public MainPageViewModel()
         {         
             Form.populate();
+        }
+
+        [RelayCommand]
+        void checkData()
+        {
+            foreach (var field in Form.RowList.SelectMany(row => row.ColumnList.SelectMany(column => column.RecordList.SelectMany(record => record.FieldList))))
+                Console.WriteLine($"{field.FieldLabel} : {field.Value}");
+        }
+        [RelayCommand]
+        void updatedata()
+        {
+            Form.RowList[0].ColumnList[0].RecordList[0].FieldList[0].Value = "Updated";
         }
 
         //Creates a DataTable that will be used as a source for the DataGrid
@@ -45,9 +58,34 @@ namespace DX_test_app.ViewModels
 
                 foreach (var field in record.FieldList)
                     row[field.FieldLabel] = field.Value;
-                
+
                 table.Rows.Add(row);
             }
+
+            // Handle the RowChanged event to update the original Form object
+            table.RowChanged += (sender, e) =>
+            {
+                DataRow row = e.Row;
+                foreach (var field in col.RecordList.SelectMany(record => record.FieldList))
+                {
+                    if (table.Columns.Contains(field.FieldLabel))
+                    {
+                        field.Value = row[field.FieldLabel];
+                    }
+                }
+            };
+
+            table.TableNewRow += (sender, e) =>
+            {
+                DataRow row = e.Row;
+                Record record = new Record();
+                foreach (DataColumn column in table.Columns)
+                {
+                    Field field = new Field { FieldLabel = column.ColumnName, Value = row[column] };
+                    record.FieldList.Add(field);
+                }
+                col.RecordList.Add(record);
+            };
 
             return table;
         }

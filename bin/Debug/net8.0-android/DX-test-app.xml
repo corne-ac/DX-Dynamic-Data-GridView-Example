@@ -6,9 +6,26 @@
     <members>
         <member name="T:DX_test_app.ViewModels.MainPageViewModel">
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:DX_test_app.ViewModels.MainPageViewModel.Form">
             <inheritdoc cref="F:DX_test_app.ViewModels.MainPageViewModel.form"/>
+        </member>
+        <member name="P:DX_test_app.ViewModels.MainPageViewModel.GridList">
+            <inheritdoc cref="F:DX_test_app.ViewModels.MainPageViewModel.gridList"/>
+        </member>
+        <member name="F:DX_test_app.ViewModels.MainPageViewModel._checkDataCommand">
+            <summary>The backing field for <see cref="P:DX_test_app.ViewModels.MainPageViewModel.checkDataCommand"/>.</summary>
+        </member>
+        <member name="P:DX_test_app.ViewModels.MainPageViewModel.checkDataCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:DX_test_app.ViewModels.MainPageViewModel.checkData"/>.</summary>
+        </member>
+        <member name="F:DX_test_app.ViewModels.MainPageViewModel._updatedataCommand">
+            <summary>The backing field for <see cref="P:DX_test_app.ViewModels.MainPageViewModel.updatedataCommand"/>.</summary>
+        </member>
+        <member name="P:DX_test_app.ViewModels.MainPageViewModel.updatedataCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:DX_test_app.ViewModels.MainPageViewModel.updatedata"/>.</summary>
         </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
             <summary>
@@ -19,6 +36,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Form">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Form" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.GridList">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "GridList" generated properties.</summary>
+        </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
             A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
@@ -27,6 +47,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Form">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Form" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.GridList">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "GridList" generated properties.</summary>
         </member>
     </members>
 </doc>
