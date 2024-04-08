@@ -40,6 +40,7 @@ namespace DX_test_app.ViewModels
         public DataTable getTable(Column col)
         {
             DataTable table = new DataTable();
+            Dictionary<DataRow, Record> rowToRecordMap = new Dictionary<DataRow, Record>();
 
             // Add columns to the DataTable using the FieldLabel of the first field in the RecordList
             foreach (var record in col.RecordList)
@@ -57,18 +58,30 @@ namespace DX_test_app.ViewModels
                 DataRow row = table.NewRow();
 
                 foreach (var field in record.FieldList)
+                {
                     row[field.FieldLabel] = field.Value;
+                    // Subscribe to the PropertyChanged event of the Field
+                    field.PropertyChanged += (sender, e) =>
+                    {
+                        if (e.PropertyName == "Value")
+                        {
+                            row[field.FieldLabel] = field.Value;
+                        }
+                    };
+                }
 
                 table.Rows.Add(row);
+                rowToRecordMap[row] = record; // Map the DataRow to its Record object
             }
 
             // Handle the RowChanged event to update the original Form object
             table.RowChanged += (sender, e) =>
             {
                 DataRow row = e.Row;
-                foreach (var field in col.RecordList.SelectMany(record => record.FieldList))
+                Record record = rowToRecordMap[row]; // Get the Record object for this DataRow
+                foreach (var field in record.FieldList)
                 {
-                    if (table.Columns.Contains(field.FieldLabel))
+                    if (table.Columns.Contains(field.FieldLabel) && !Equals(field.Value, row[field.FieldLabel]))
                     {
                         field.Value = row[field.FieldLabel];
                     }
@@ -85,6 +98,7 @@ namespace DX_test_app.ViewModels
                     record.FieldList.Add(field);
                 }
                 col.RecordList.Add(record);
+                rowToRecordMap[row] = record; // Map the new DataRow to its Record object
             };
 
             return table;

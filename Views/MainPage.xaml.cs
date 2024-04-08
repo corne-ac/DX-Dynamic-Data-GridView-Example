@@ -1,13 +1,15 @@
-﻿using DevExpress.Maui.DataGrid;
+﻿using DevExpress.Entity.Model;
+using DevExpress.Maui.DataGrid;
 using DX_test_app.Models;
 using DX_test_app.ViewModels;
+using System.Data;
 
 namespace DX_test_app
 {
     public partial class MainPage : ContentPage
     {
         // List used to store each gridview created
-        
+
         public List<Label> labels = new();
 
         public MainPage(MainPageViewModel vm)
@@ -38,6 +40,22 @@ namespace DX_test_app
                     AutoGenerateColumnsMode = AutoGenerateColumnsMode.Auto,
                 };
 
+                //Customise headers
+
+                //int width = field.Value.ToString().Length * 13;
+                //int titleWidth = field.FieldLabel.ToString().Length * 13;
+                //width = width < 100 ? 100 : width;
+                //width = titleWidth > width ? titleWidth : width;
+                grid.ColumnHeaderAppearance = new()
+                {
+                   FontSize = 17,
+                   FontAttributes = FontAttributes.Bold,
+                   BackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255),
+                   
+                };
+
+                
+
                 //Add label with column name
                 Label label = new()
                 {
@@ -53,80 +71,34 @@ namespace DX_test_app
                 // Iterate through fields to add relevant column types to grid
                 foreach (var recordList in col.RecordList)
                 {
-                    // Iterate through fields
-                    foreach (var field in recordList.FieldList)
-                    {
-                        // Check if column hasn't been added yet
-                        if (grid.Columns.FirstOrDefault(c => c.FieldName == field.FieldLabel) == null)
-                        {
-                            // Calculate width of column based on length of data and ColumnName
-                            int width = field.Value.ToString().Length * 13;
-                            int titleWidth = field.FieldLabel.ToString().Length * 13;
-                            width = width < 100 ? 100 : width;
-                            width = titleWidth > width ? titleWidth : width;
-
-
-                            // Check data type and set column type accordingly
-                            if (field.Value.GetType() == typeof(int))
-                            {
-                                grid.Columns.Add(new NumberColumn()
-                                {
-                                    FieldName = field.FieldLabel,
-                                    Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                });
-                            }
-                            else if (field.Value.GetType() == typeof(DateTime))
-                            {
-                                grid.Columns.Add(new DateColumn()
-                                {
-                                    FieldName = field.FieldLabel,
-                                    Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                });
-                            }
-                            else if (field.Value.GetType() == typeof(bool))
-                            {
-                                grid.Columns.Add(new CheckBoxColumn()
-                                {
-                                    FieldName = field.FieldLabel,
-                                    Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                });
-                            }
-                            else if (field.Value.GetType() == typeof(decimal) || //All number types
-                                     field.Value.GetType() == typeof(long) ||
-                                     field.Value.GetType() == typeof(int) ||
-                                     field.Value.GetType() == typeof(short) |
-                                     field.Value.GetType() == typeof(float) ||
-                                     field.Value.GetType() == typeof(double))
-                            {
-                                grid.Columns.Add(new NumberColumn()
-                                {
-                                    FieldName = field.FieldLabel,
-                                    Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    BindingContext = col.RecordList[0],
-                                });
-                            }
-                            else
-                            {
-                                grid.Columns.Add(new TextColumn()
-                                {
-                                    FieldName = field.FieldLabel,
-                                    Caption = field.FieldLabel,
-                                    MinWidth = width,
-                                    BindingContext = col.RecordList[0].FieldList[0],
-
-                                });
-                            }
-                        }
-                    }
+                    
                 }
+
+                //// Iterate through fields
+                //foreach (var field in col.RecordList[0].FieldList)
+                //{
+                //    // Check if column hasn't been added yet
+                //    if (grid.Columns.FirstOrDefault(c => c.FieldName == field.Value.ToString()) == null)
+                //    {
+                //        // Calculate width of column based on length of data and ColumnName
+                //        int width = field.Value.ToString().Length * 13;
+                //        int titleWidth = field.FieldLabel.ToString().Length * 13;
+                //        width = width < 100 ? 100 : width;
+                //        width = titleWidth > width ? titleWidth : width;
+
+                //        //grid.Columns.Add(new TextColumn()
+                //        //{
+                //        //    FieldName = "Value",
+                //        //    Caption = field.FieldLabel,
+                //        //    MinWidth = width,
+                //        //    BindingContext = field,
+                //        //});
+                //    }
+                //}
 
                 // Set Source
                 //grid.ItemsSource = vm.getTable(col);
-                grid.ItemsSource = col.RecordList;
+                grid.ItemsSource = vm.getTable(col);
                 vm.GridList.Add(grid);
             } // foreach column 
         }
@@ -137,7 +109,6 @@ namespace DX_test_app
             // Iterate through gridList and add each grid to the stack layout
             foreach (var grid in vm.GridList)
             {
-                int i = 0;
                 //Apply additional formatting to headers
                 grid.Columns.ForEach(c =>
                 {
@@ -145,14 +116,14 @@ namespace DX_test_app
                     c.HeaderBackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255);
                     c.HeaderFontAttributes = FontAttributes.Bold;
                     //c.SetBinding(TitleProperty, "FieldList.Field.FieldLabel");
-                    //c.SetBinding(ContentProperty, new Binding("Value"));
+                    //c.SetBinding(ContentProperty, new Binding("FieldList[*].Value"));
                     //c.SetBinding(TitleProperty, new Binding("FieldName"));
                     //c.SetBinding(GridColumn.BindingContextProperty, "FieldList.Value.Value");
                 });
                 stack.Children.Add(labels[c++]);
                 stack.Children.Add(grid);
             }
- 
+
         }
 
     } // Class
