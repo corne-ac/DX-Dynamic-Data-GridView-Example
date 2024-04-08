@@ -41,11 +41,6 @@ namespace DX_test_app
                 };
 
                 //Customise headers
-
-                //int width = field.Value.ToString().Length * 13;
-                //int titleWidth = field.FieldLabel.ToString().Length * 13;
-                //width = width < 100 ? 100 : width;
-                //width = titleWidth > width ? titleWidth : width;
                 grid.ColumnHeaderAppearance = new()
                 {
                    FontSize = 17,
@@ -54,34 +49,42 @@ namespace DX_test_app
                    
                 };
 
+
+                //Implement Custom Column that will have button controls
                 grid.Columns.Add(new TemplateColumn()
                 {
                        UnboundType = DevExpress.Maui.Core.UnboundDataType.Object,
                        FieldName = "FieldList",
-                });
-
-                //grid.
-                //Add two labels to the template column from above
-                var CellTemplate = new DataTemplate(() =>
-                {
-                    StackLayout stack = new();
-                    stack.Children.Add(new Label()
+                    DisplayTemplate = new DataTemplate(() =>
                     {
-                        Text = "FieldLabel",
-                        FontSize = 17,
-                        FontAttributes = FontAttributes.Bold,
-                        BackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255),
-                    });
-                    stack.Children.Add(new Label()
-                    {
-                        Text = "Value",
-                        FontSize = 17,
-                        FontAttributes = FontAttributes.Bold,
-                        BackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255),
-                    });
-                    return stack;
-                });
+                        var stack = new StackLayout();
+                        stack.Orientation = StackOrientation.Horizontal;
+                        stack.Spacing = 10;
+                        stack.Padding = new Thickness(10, 5, 10, 5);
 
+                        var editButton = new Button();
+                        editButton.Text = "✎";
+                        editButton.Clicked += (sender, e) =>
+                        {
+                            //Print to console
+                            Console.WriteLine("Edit Button Clicked");
+                        };
+                        stack.Children.Add(editButton);
+
+                        var deleteButton = new Button();
+                        deleteButton.Text = "🗑";
+                        deleteButton.Clicked += (sender, e) =>
+                        {
+                            //Print to console
+                            Console.WriteLine("Delete Button Clicked");
+                            
+                        };
+                        stack.Children.Add(deleteButton);
+
+                        return stack;
+                    }),
+
+                });
 
                 //Add label with column name
                 Label label = new()
@@ -93,38 +96,7 @@ namespace DX_test_app
                 };
                 labels.Add(label);
 
-                // Iterate through records and fields to add relevant column types to grid
-                // Goes through all records in case some fields are not present in all records (ex. fields added later)
-                // Iterate through fields to add relevant column types to grid
-                foreach (var recordList in col.RecordList)
-                {
-                    
-                }
-
-                //// Iterate through fields
-                //foreach (var field in col.RecordList[0].FieldList)
-                //{
-                //    // Check if column hasn't been added yet
-                //    if (grid.Columns.FirstOrDefault(c => c.FieldName == field.Value.ToString()) == null)
-                //    {
-                //        // Calculate width of column based on length of data and ColumnName
-                //        int width = field.Value.ToString().Length * 13;
-                //        int titleWidth = field.FieldLabel.ToString().Length * 13;
-                //        width = width < 100 ? 100 : width;
-                //        width = titleWidth > width ? titleWidth : width;
-
-                //        //grid.Columns.Add(new TextColumn()
-                //        //{
-                //        //    FieldName = "Value",
-                //        //    Caption = field.FieldLabel,
-                //        //    MinWidth = width,
-                //        //    BindingContext = field,
-                //        //});
-                //    }
-                //}
-
                 // Set Source
-                //grid.ItemsSource = vm.getTable(col);
                 grid.ItemsSource = vm.getTable(col);
                 vm.GridList.Add(grid);
             } // foreach column 
@@ -142,10 +114,6 @@ namespace DX_test_app
                     c.HeaderFontSize = 17;
                     c.HeaderBackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255);
                     c.HeaderFontAttributes = FontAttributes.Bold;
-                    //c.SetBinding(TitleProperty, "FieldList.Field.FieldLabel");
-                    //c.SetBinding(ContentProperty, new Binding("FieldList[*].Value"));
-                    //c.SetBinding(TitleProperty, new Binding("FieldName"));
-                    //c.SetBinding(GridColumn.BindingContextProperty, "FieldList.Value.Value");
                 });
                 stack.Children.Add(labels[c++]);
                 stack.Children.Add(grid);
