@@ -37,7 +37,7 @@ namespace DX_test_app
                     BorderThickness = new Thickness(2),
                     EditorShowMode = EditorShowMode.DoubleTap,
                     AllowDragDropRows = true,
-                    AutoGenerateColumnsMode = AutoGenerateColumnsMode.Auto,
+                    AutoGenerateColumnsMode = AutoGenerateColumnsMode.Add,
                 };
 
                 //Customise headers
@@ -54,7 +54,34 @@ namespace DX_test_app
                    
                 };
 
-                
+                grid.Columns.Add(new TemplateColumn()
+                {
+                       UnboundType = DevExpress.Maui.Core.UnboundDataType.Object,
+                       FieldName = "FieldList",
+                });
+
+                //grid.
+                //Add two labels to the template column from above
+                var CellTemplate = new DataTemplate(() =>
+                {
+                    StackLayout stack = new();
+                    stack.Children.Add(new Label()
+                    {
+                        Text = "FieldLabel",
+                        FontSize = 17,
+                        FontAttributes = FontAttributes.Bold,
+                        BackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255),
+                    });
+                    stack.Children.Add(new Label()
+                    {
+                        Text = "Value",
+                        FontSize = 17,
+                        FontAttributes = FontAttributes.Bold,
+                        BackgroundColor = Microsoft.Maui.Graphics.Color.FromRgba(173, 216, 230, 255),
+                    });
+                    return stack;
+                });
+
 
                 //Add label with column name
                 Label label = new()
